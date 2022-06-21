@@ -1,0 +1,6 @@
+CSS Fundamentals
+
+Responsive design
+Maintainable and scalable code
+Web performance
+

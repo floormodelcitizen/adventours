@@ -1,0 +1,73 @@
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin gradient-primary {
+    background-image: linear-gradient(
+        to right, 
+        $color-primary-light, 
+        $color-primary-dark);
+}
+
+@mixin gradient-secondary {
+    background-image: linear-gradient(
+        to right, 
+        $color-secondary-light, 
+        $color-secondary-dark);
+}
+
+@mixin gradient-tertiary {
+    background-image: linear-gradient(
+        to right, 
+        $color-tertiary-light, 
+        $color-tertiary-dark);
+}
+
+@mixin absolute-center {
+    position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+}
+
+// MEDIA QUERY MANAGER
+// 0-320: iPhone 5s
+// 0-600: Phone
+// 600-900: Tablet portrait
+// 900-1200: Tablet landscape
+// [1200 - 1800] coded styles apply
+// 1800+ Big desktop
+
+//* $breakpoint argument choices:
+// - phone
+// - tab-port
+// - tab-land
+// - big-desktop
+// 1em = 16px (default)
+
+// ORDER: Base + typography > general layout + grid > page layout > components
+
+//* In Desktop first: if 2 MQs apply the last one will apply (cascading); list LARGER first, SMALLER after
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone5s {
+        @media (max-width: 20em) { @content }; //320px
+    }
+    @if $breakpoint == phone {
+        @media (max-width: 37.5em) { @content }; //600px
+    }
+    @if $breakpoint == tab-port {
+        @media (max-width: 56.25em) { @content }; //900px
+    }
+    @if $breakpoint == tab-land {
+        @media (max-width: 75em) { @content }; //1200px
+    }
+    @if $breakpoint == big-desktop {
+        @media (min-width: 112.5em) { @content }; //1800px
+    }
+}  //? Why not use viewport units?
+//? Why is there no breakpoints for 300px?
